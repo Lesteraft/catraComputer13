@@ -2,10 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
+import { RegistrosComponent } from './components/registros/registros.component';
+import { MensajesComponent } from './components/mensajes/mensajes.component';
+import { NavComponent } from './components/nav/nav.component';
+import { SubNavsComponent } from './components/sub-navs/sub-navs.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InstruccionesComponent,
+    RegistrosComponent,
+    MensajesComponent,
+    NavComponent,
+    SubNavsComponent
   ],
   imports: [
     BrowserModule

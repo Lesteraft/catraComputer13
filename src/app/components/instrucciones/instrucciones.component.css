@@ -1,0 +1,9 @@
+.editor {
+    border: none;
+    height: auto;
+}
+
+textarea :focus {
+    outline: none !important;
+    border: none !important;
+}
