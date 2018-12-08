@@ -5,5 +5,5 @@
             1
         </div>
     </div>
-    <textarea class="col-10 editor" rows="10"></textarea>
+    <textarea (keydown.backspace)="restarLineas()" (keydown.enter)="sumarLineas()" id="instrucciones" class="col-10 editor" rows="10"></textarea>
 </div>

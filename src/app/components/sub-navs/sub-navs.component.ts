@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SubNavsComponent implements OnInit {
 
-   @Input() tema:string;
+   @Input() tema: string;
 
   constructor() { }
 
