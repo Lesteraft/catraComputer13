@@ -1,8 +1,10 @@
 <app-sub-navs [tema]="'Instrucciones'"></app-sub-navs>
 <div class="row">
-    <div id="lineas" class="sidebar col-1" style="width: 15px; margin-left: 16px; padding-right: 0px; background-color: rgb(240, 240, 240)">
-        <div>
-            1
+    <div class="sidebar col-1" style="padding-right: 0px;">
+        <div id="lineas" class="sidebar text-center" style="">
+            <div>
+                1
+            </div>
         </div>
     </div>
     <textarea (keydown)="totalLineas()" (keydown.backspace)="restarLineas()" (keydown.enter)="sumarLineas()" id="instrucciones" class="col-10 editor" rows="10"></textarea>
