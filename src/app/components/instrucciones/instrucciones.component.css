@@ -6,6 +6,7 @@
 #instrucciones {
     padding-left: 0px !important;
     width: 88%;
+    resize: none !important;
 }
 
 #lineas {
@@ -17,3 +18,5 @@
 #instrucciones:focus {
     outline: none;
 }
+
+#InstruccionesTotal {}

@@ -7,6 +7,7 @@ import { MensajesComponent } from './components/mensajes/mensajes.component';
 import { NavComponent } from './components/nav/nav.component';
 import { SubNavsComponent } from './components/sub-navs/sub-navs.component';
 import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
+import { InferiorComponent } from './components/inferior/inferior.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { InstruccionesComponent } from './components/instrucciones/instrucciones
     RegistrosComponent,
     MensajesComponent,
     NavComponent,
-    SubNavsComponent
+    SubNavsComponent,
+    InferiorComponent
   ],
   imports: [
     BrowserModule
