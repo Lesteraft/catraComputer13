@@ -24,7 +24,7 @@ export class InstruccionesComponent implements OnInit {
     this.modificarDiv(this.count);
   }
 
-  modificarDiv(numero: number) {
+  modificarDiv(numero) {
     $('#lineas').html(' ');
     for ( let i = 0 ; i < numero ; i++ ) {
       $('#lineas').append(
