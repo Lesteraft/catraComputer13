@@ -1,7 +1,8 @@
 var text;
 var count;
 var lines;
-
+var PC = 0;
+var acumulador = 0;
 
 function modificarDiv(numero) {
     $('#lineas').html(' ');
@@ -55,4 +56,10 @@ $("#btnSiguiente").click(function() {
 $("#btnPaso").click(function() {
     console.log('click en paso');
 
+});
+
+$(document).ready(function() {
+    console.log('LISTOOOOO');
+    $("#infoPC").html(PC);
+    $("#infoAC").html(acumulador);
 });
