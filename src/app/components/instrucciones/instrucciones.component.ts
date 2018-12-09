@@ -11,7 +11,6 @@ export class InstruccionesComponent implements OnInit {
   text;
   lines;
   count;
-  numeroLineas: number;
 
   constructor() { }
 
@@ -22,18 +21,7 @@ export class InstruccionesComponent implements OnInit {
     this.text = $('#instrucciones').val();
     this.lines = this.text.split('\n');
     this.count = this.lines.length + 1;
-    console.log(this.count);
-    this.numeroLineas = this.count;
-    this.modificarDiv(this.numeroLineas);
-  }
-
-  restarLineas() {
-    this.text = $('#instrucciones').val();
-    this.lines = this.text.split('\n');
-    this.count = this.lines.length;
-    console.log(this.count);
-    this.numeroLineas = this.count;
-    this.modificarDiv(this.numeroLineas);
+    this.modificarDiv(this.count);
   }
 
   modificarDiv(numero: number) {
@@ -46,12 +34,21 @@ export class InstruccionesComponent implements OnInit {
   }
 
   totalLineas() {
-    this.text = $('#instrucciones').val();
-    this.lines = this.text.split('\n');
-    this.count = this.lines.length;
-    console.log(this.count);
-    this.numeroLineas = this.count;
-    this.modificarDiv(this.numeroLineas);
+    setTimeout(() => {
+      this.text = $('#instrucciones').val();
+      this.lines = this.text.split('\n');
+      this.count = this.lines.length;
+      this.modificarDiv(this.count);
+    }, 10);
+  }
+
+  lineasBorradas() {
+    setTimeout(() => {
+      this.text = $('#instrucciones').val();
+      this.lines = this.text.split('\n');
+      this.count = this.lines.length;
+      this.modificarDiv(this.count);
+    }, 10);
   }
 
 }

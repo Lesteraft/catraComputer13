@@ -4,12 +4,14 @@
 }
 
 #instrucciones {
-    padding-left: 5px !important;
+    padding-left: 0px !important;
+    margin-left: -15px;
 }
 
 #lineas {
     height: 100%;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(201, 187, 150);
+    width: 50%;
 }
 
 #instrucciones:focus {
