@@ -19,4 +19,15 @@
     outline: none;
 }
 
-#InstruccionesTotal {}
+.controles {
+    font-size: 25px;
+    margin-left: 10px;
+    color: rgb(95, 95, 156);
+    cursor: pointer;
+}
+
+.controles:hover {
+    font-size: 35px;
+    margin-left: 10px;
+    color: rgb(53, 53, 172);
+}

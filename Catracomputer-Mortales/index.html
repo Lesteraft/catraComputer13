@@ -10,20 +10,40 @@
     <link rel="stylesheet" href="./css/custome1.css" />
     <link rel="stylesheet" href="./css/custome2.css" />
     <link rel="stylesheet" href="./css/custome3.css" />
+    <link rel="stylesheet" href="./font-awesome/css/all.min.css" />
 
 </head>
 
 <body>
     <!--Nav Nombre-->
-    <nav class="navbar" style="background-color: #072359">
+    <nav class="navbar mb-3" style="background-color: #072359">
         <div class="text-center" style="color: #0388A6; font-weight: bold; font-size: 20px; margin: auto;">
             CatraComputer
         </div>
     </nav>
 
     <!-- Catracomputer-->
-    <div class="mt-3 container">
-        <div class="row">
+    <div class="container">
+        <!--Controles Principales-->
+        <div class="text-center nav">
+            <div style="height: 35px;" id="btnPlay">
+                <i class=" controles fa fa-play" aria-hidden="true"></i>
+            </div>
+            <div style="height: 35px;" id="btnStop">
+                <i class=" controles fa fa-stop" aria-hidden="true"></i>
+            </div>
+            <div style="height: 35px;" id="btnAtras">
+                <i class=" controles fa fa-step-backward" aria-hidden="true"></i>
+            </div>
+            <div style="height: 35px;" id="btnPaso">
+                <i class="controles fa fa-shoe-prints    "></i>
+            </div>
+            <div style="height: 35px;" id="btnSiguiente">
+                <i class=" controles fa fa-step-forward" aria-hidden="true"></i>
+            </div>
+
+        </div>
+        <div class=" mt-2 row">
             <div class="col-2" style="background-color: white; border: 1px solid;  padding: 0px !important ">
                 <div class="alutra">
                     <nav class="navbar" style="background-color:#0388A6;">
@@ -54,13 +74,13 @@
                 </nav>
                 <div class="row" id="InstruccionesTotal">
                     <div class="sidebar col-1" style="padding-right: 0px;">
-                        <div id="lineas" class="sidebar text-center" style="">
+                        <div id="lineas" class="sidebar text-center">
                             <div>
                                 1
                             </div>
                         </div>
                     </div>
-                    <textarea (keydown)="totalLineas()" (keydown.backspace)="lineasBorradas()" (keydown.enter)="sumarLineas()" id="instrucciones" class="editor" rows="12"></textarea>
+                    <textarea id="instrucciones" class="editor" rows="12"></textarea>
                 </div>
             </div>
             <div class="col-3" style="background-color: white; border: 1px solid; padding: 0px !important ">
@@ -140,7 +160,7 @@
     <script src="./jquery/jquery.min.js"></script>
     <script src="./popper/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src=""></script>
+    <script src="./js/controlador.js"></script>
 </body>
 
 </html>
