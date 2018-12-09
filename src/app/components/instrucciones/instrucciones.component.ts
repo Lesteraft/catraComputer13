@@ -20,7 +20,7 @@ export class InstruccionesComponent implements OnInit {
   sumarLineas() {
     this.text = $('#instrucciones').val();
     this.lines = this.text.split('\n');
-    this.count = this.lines.length + 1;
+    this.count = this.lines.length;
     this.modificarDiv(this.count);
   }
 

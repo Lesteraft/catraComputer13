@@ -5,13 +5,13 @@
 
 #instrucciones {
     padding-left: 0px !important;
-    margin-left: -15px;
+    width: 88%;
 }
 
 #lineas {
     height: 100%;
     background-color: rgb(201, 187, 150);
-    width: 50%;
+    width: 80%;
 }
 
 #instrucciones:focus {
