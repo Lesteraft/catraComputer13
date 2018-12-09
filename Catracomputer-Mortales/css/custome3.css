@@ -1,0 +1,22 @@
+.editor {
+    border: none;
+    height: auto;
+}
+
+#instrucciones {
+    padding-left: 0px !important;
+    width: 88%;
+    resize: none !important;
+}
+
+#lineas {
+    height: 100%;
+    background-color: rgb(201, 187, 150);
+    width: 80%;
+}
+
+#instrucciones:focus {
+    outline: none;
+}
+
+#InstruccionesTotal {}
