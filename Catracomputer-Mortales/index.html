@@ -27,7 +27,7 @@
         <!--Controles Principales-->
         <div class="text-center nav">
             <div style="height: 35px;" id="btnPlay">
-                <i class=" controles fa fa-play" aria-hidden="true"></i>
+                <i class=" controles fa fa-play" onclick="Obtencion()" aria-hidden="true"></i>
             </div>
             <div style="height: 35px;" id="btnStop">
                 <i class=" controles fa fa-stop" aria-hidden="true"></i>
@@ -66,6 +66,14 @@
                     </div>
                 </div>
             </div>
+            <!--Instrucciones
+                 this.text = $('#instrucciones').val();
+                 this.lines = this.text.split('\n');
+                 this.count = this.lines.length;
+                 this.modificarDiv(this.count);
+
+
+            -->
             <div class="col-7" style="background-color: white; border: 1px solid;  padding: 0px !important ">
                 <nav class="navbar" style="background-color:#0388A6;">
                     <div class="text-center" style="color: #072359; font-weight: bold; margin: auto;">
@@ -76,16 +84,20 @@
                     <div class="sidebar col-1" style="padding-right: 0px;">
                         <div id="lineas" class="sidebar text-center">
                             <div>
-                                1
+                                1.
                             </div>
                         </div>
                     </div>
-                    <textarea id="instrucciones" class="editor" rows="12"></textarea>
+                    <!-- aqui se leen las instrucciones--> 
+                    <textarea id="instrucciones" class="editor" rows="12">
+                    	
+
+                    </textarea>
                 </div>
             </div>
             <div class="col-3" style="background-color: white; border: 1px solid; padding: 0px !important ">
                 <nav class="navbar" style="background-color:#0388A6;">
-                    <div class="text-center" style="color: #072359; font-weight: bold; margin: auto;">
+                    <div class="text-center"  style="color: #072359; font-weight: bold; margin: auto;">
                         Mensajes
                     </div>
                 </nav>
@@ -110,19 +122,22 @@
                                 Consola
                             </div>
                         </nav>
-                        <div class="parte-baja">
+                        <div class="parte-baja" >
                             hola mundo
+
                         </div>
                     </div>
 
                     <div class="col-12 collapse " aria-labelledby="headingThree" data-parent="#accordionExample" id="collapseDesest">
                         <nav class="navbar" style="background-color:#0388A6;">
-                            <div class="text-center" style="color: #072359; font-weight: bold; margin: auto;">
+                            <div  class="text-center" style="color: #072359; font-weight: bold; margin: auto;">
                                 desestructuracion
                             </div>
                         </nav>
-                        <div class="parte-baja">
-                            hola mundo
+                        <div id="desestru" class="parte-baja">
+                            <p > 
+
+                            </p>
                         </div>
                     </div>
 
@@ -146,10 +161,10 @@
                             <button class="btn btn-secondary mr-1" type="button" data-toggle="collapse" data-target="#collapseConsola" aria-expanded="true" aria-controls="collapseConsola" id="headingTwo">Consola</button>
                         </div>
                         <div class="">
-                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapseDesest" aria-expanded="false" aria-controls="collapseDesest" id="headingThree">desestructuracion</button>
+                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapseDesest" aria-expanded="false" aria-controls="collapseDesest" id="headingThree" >desestructuracion</button>
                         </div>
                         <div class="">
-                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapsePaso" aria-expanded="false" aria-controls="collapsePaso" id="headingFour">Paso a Paso</button>
+                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapsePaso" aria-expanded="false" aria-controls="collapsePaso" id="headingFour" >Paso a Paso</button>
                         </div>
                     </div>
                 </div>
@@ -157,6 +172,12 @@
         </div>
 
     </div>
+    <script >
+
+    </script>
+
+    
+    <script type="text/javascript" src="./decodificacion/prueba1.js"></script>
     <script src="./jquery/jquery.min.js"></script>
     <script src="./popper/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
