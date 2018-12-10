@@ -4,6 +4,7 @@ var count;
 var lines;
 var PC = 0;
 var acumulador = 0;
+var textoLinea;
 
 function modificarDiv(numero) {
     $('#lineas').html(' ');
@@ -38,6 +39,7 @@ $("#btnPlay").click(function() {
     console.log('click en play');
     $("#notificaciones").html('');
     ejecutar($("#instrucciones").val());
+    PC = 0;
 });
 
 $("#btnAtras").click(function() {
@@ -57,7 +59,8 @@ $("#btnSiguiente").click(function() {
 
 $("#btnPaso").click(function() {
     console.log('click en paso');
-
+    PC += 1;
+    ejecutarPasoAPaso();
 });
 
 $(document).ready(function() {
@@ -93,19 +96,35 @@ function ejecutar(texto) {
     PC = 0;
 }
 
+function ejecutarPasoAPaso() {
+    text = $("#instrucciones").val();
+    lines = text.split('\n');
+    count = lines.length + 1;
+    textoLinea = lines[PC - 1];
+    if (PC < count && validar(textoLinea, PC - 1)) {
+        accion = lines[PC - 1].substr(1, 2);
+        memoria = lines[PC - 1].substr(3, 4, 5);
+        accionEval(accion, memoria);
+        console.log(accion + " --> " + memoria);
+    }
+}
+
 function validar(parte, numero) {
     var tamaño = parte.length;
     if (tamaño != 6) {
         alert('Error, instruccion incompleta: ' + (numero + 1));
+        PC = 0;
         return false;
     }
     if (parte.substr(0, 1) != '+') {
         alert('Error, falta signo "+" en la instruccion número: ' + (numero + 1));
+        PC = 0
         return false;
     }
     for (var i = 1; i < tamaño; i++) {
         if (!(parte.charCodeAt(i) >= 48 && parte.charCodeAt(i) <= 57)) {
             alert('Error, se ingresó caracter inválido en la instrucción: ' + (numero + 1));
+            PC = 0;
             return false;
         }
     }
