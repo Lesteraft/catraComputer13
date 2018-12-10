@@ -45,12 +45,10 @@ $("#btnPlay").click(function() {
     var accion;
     var memoriaOp;
     while (PC != -1) {
-        console.log(memoria);
         if (validar(memoria[PC], PC)) {
             accion = memoria[PC].substr(1, 2);
             memoriaOP = memoria[PC].substr(3, 4, 5);
             accionEval(accion, memoriaOP);
-            console.log(accion + " --> " + memoriaOP);
             $("#infoPC").html(PC);
         } else {
             PC = -1;
@@ -116,10 +114,19 @@ function accionEval(accion, numero) {
                 var ingreso;
                 console.log("Lee");
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
-                memoria[numero] = prompt("Ingresa el dato");
-                PC = PC + 1;
-                $("#infoPC").html(PC);
-                $("#infoAC").html(acumulador);
+                ingreso = prompt('Ingresa el número');
+                for (var i = 0; i < ingreso.length; i++) {
+                    if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
+                        memoria[numero] = ingreso;
+                        PC = PC + 1;
+                        $("#infoPC").html(PC);
+                        $("#infoAC").html(acumulador);
+                    } else {
+                        PC = -1;
+                        $("#notificaciones").append(` <div class="card" style="color: red; font-size: 20px;"> <i class="fa fa-exclamation-circle" aria-hidden="true">ERROR, SE INGRESÓ CARACTER INVÁLIDO +${accion + numero}</i> </div>`);
+                        break;
+                    }
+                }
                 break;
             }
         case '11':
