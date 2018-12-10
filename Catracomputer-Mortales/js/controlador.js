@@ -116,61 +116,73 @@ function accionEval(accion, memoria) {
         case '10':
             {
                 console.log("Lee");
+                //Ojo, Alison, aquí debe ir relacionado con "consola" para que desde la consola el ususario ingrese lo que quiera
                 break;
             }
         case '11':
             {
                 console.log('Escribe');
+                //aquí tambien a consola ahí se debe imprimir los resultados por ejempli
                 break;
             }
         case '20':
             {
                 console.log('Carga');
+                //se pedirá mediante "memoria" al arreglo de objetos para mandarlo al ACUMULADOR
                 break;
             }
         case '21':
             {
                 console.log('Almacena');
+                //lo del ac irá al espacio de "memoria" nota: el número de memoria está de parametro
                 break;
             }
         case '30':
             {
                 console.log('Suma');
+                //estas son funciones extras
                 break;
             }
         case '31':
             {
                 console.log('Resta');
+                //estas son funciones extras
                 break;
             }
         case '32':
             {
                 console.log('Divide');
+                //estas son funciones extras
                 break;
             }
         case '33':
             {
                 console.log('Multiplica');
+                //estas son funciones extras
                 break;
             }
         case '40':
             {
                 console.log('Bifurca');
+                //justo lo que hizo
                 break;
             }
         case '41':
             {
                 console.log('Bifurca si Negativo');
+                //justo lo que hizo
                 break;
             }
         case '42':
             {
                 console.log('Bifurca si Cero');
+                //justo lo que hizo
                 break;
             }
         case '43':
             {
                 console.log('Fin Programa');
+                //justo lo que hizo
                 break;
             }
         default:
