@@ -36,6 +36,7 @@ $("#instrucciones").keydown(
 
 $("#btnPlay").click(function() {
     console.log('click en play');
+    $("#notificaciones").html('');
     ejecutar($("#instrucciones").val());
 });
 
@@ -73,7 +74,6 @@ function ejecutar(texto) {
     console.log(partes);
     do {
         if (validar(partes[PC], PC)) {
-            console.log('holaaaa');
             accion = partes[PC].substr(1, 2);
             memoria = partes[PC].substr(3, 4, 5);
             accionEval(accion, memoria);
@@ -117,91 +117,91 @@ function accionEval(accion, memoria) {
         case '10':
             {
                 console.log("Lee");
-                $("#notificaciones").append("--> 10: Se LEE y ALMACENA en: " + '<br>');
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->10:</div><div class="col-7">Se LEE y ALMACENA en:</div><div class="col-2">${memoria}</div></div></div>`);
                 //Ojo, Alison, aquí debe ir relacionado con "consola" para que desde la consola el ususario ingrese lo que quiera
                 break;
             }
         case '11':
             {
                 console.log('Escribe');
-                $("#notificaciones").append("--> 11: Se ESCRIBE e IMPRIME en pantalla" + '<br>');
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->11:</div><div class="col-7">Se ESCRIBE e IMPRIME en pantalla</div></div></div>`);
                 //aquí tambien a consola ahí se debe imprimir los resultados por ejempli
                 break;
             }
         case '20':
             {
                 console.log('Carga');
-                $("#notificaciones").append("--> 20: Se CARGA y ACUMULA en: " + '<br>');
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->20:</div><div class="col-7">Se CARGA y ACUMULA en:</div><div class="col-2">${memoria}</div></div></div>`);
                 //se pedirá mediante "memoria" al arreglo de objetos para mandarlo al ACUMULADOR
                 break;
             }
         case '21':
             {
                 console.log('Almacena');
-                $("#notificaciones").append("--> 21: Se ALMACENA en: " + '<br>');
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->21:</div><div class="col-7">Se ALMACENA en:</div><div class="col-2">${memoria}</div></div></div>`);
                 //lo del ac irá al espacio de "memoria" nota: el número de memoria está de parametro
                 break;
             }
         case '30':
             {
                 console.log('Suma');
-                $("#notificaciones").append("--> 30: Se SUMA y almacena en ACUMULADOR");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->30:</div><div class="col-7">Se SUMA y almacena en ACUMULADOR</div></div></div>`);
                 //estas son funciones extras
                 break;
             }
         case '31':
             {
                 console.log('Resta');
-                $("#notificaciones").append("--> 31: Se RESTA y almacena en ACUMULADOR");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->31:</div><div class="col-7">Se RESTA y almacena en ACUMULADOR</div></div></div>`);
                 //estas son funciones extras
                 break;
             }
         case '32':
             {
                 console.log('Divide');
-                $("#notificaciones").append("--> 32: Se DIVIDE y almacena en ACUMULADOR");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->32:</div><div class="col-7">Se DIVIDE y almacena en ACUMULADOR</div></div></div>`);
                 //estas son funciones extras
                 break;
             }
         case '33':
             {
                 console.log('Multiplica');
-                $("#notificaciones").append("--> 33: Se MULTIPLICA y almacena en ACUMULADOR");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->33:</div><div class="col-7">Se MULTIPLICA y almacena en ACUMULADOR</div></div></div>`);
                 //estas son funciones extras
                 break;
             }
         case '40':
             {
                 console.log('Bifurca');
-                $("#notificaciones").append("--> 40: BIFURCA a: ");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->40:</div><div class="col-7">BIFURCA a:</div><div class="col-2">${memoria}</div></div></div>`);
                 //justo lo que hizo
                 break;
             }
         case '41':
             {
                 console.log('Bifurca si Negativo');
-                $("#notificaciones").append("--> 41: BIFURCANEG a: ");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->41:</div><div class="col-7">BIFURCANEG a:</div><div class="col-2">${memoria}</div></div></div>`);
                 //justo lo que hizo
                 break;
             }
         case '42':
             {
                 console.log('Bifurca si Cero');
-                $("#notificaciones").append("--> 42: BIFURCACERO a: ");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->42:</div><div class="col-7">BIFURCACERO a:</div><div class="col-2">${memoria}</div></div></div>`);
                 //justo lo que hizo
                 break;
             }
         case '43':
             {
                 console.log('Fin Programa');
-                $("#notificaciones").append("--> 43: ALTO se culmina la TAREA");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->43:</div><div class="col-7">ALTO se culmina la TAREA</div></div></div>`);
                 //justo lo que hizo
                 break;
             }
         default:
             {
                 console.log('error');
-                $("#notificaciones").append("-->Error de Istrucción");
+                $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->E/:</div><div class="col-7">Error de Instrucción</div></div></div>`);
                 break;
             }
     }
