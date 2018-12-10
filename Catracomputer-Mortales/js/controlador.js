@@ -67,7 +67,7 @@ $(document).ready(function() {
     console.log('LISTOOOOO');
     $("#infoPC").html(PC);
     $("#infoAC").html(acumulador);
-
+    memoria['009'] = 84;
 });
 
 function ejecutar(texto) {
@@ -131,7 +131,7 @@ function validar(parte, numero) {
     return true;
 }
 
-function accionEval(accion, memoria) {
+function accionEval(accion, numero) {
     switch (accion) {
         case '10':
             {
@@ -145,6 +145,9 @@ function accionEval(accion, memoria) {
                 console.log('Escribe');
                 $("#notificaciones").append(`<div class="container"><div class="row"><div class="col-3">-->11:</div><div class="col-7">Se ESCRIBE e IMPRIME en pantalla</div></div></div>`);
                 //aquí tambien a consola ahí se debe imprimir los resultados por ejempli
+                $("#consolaEntrada").css('display', 'none');
+                $("#consolaSalida").css('display', 'block');
+                $("#consolaSalida").html('A MOSTRAR: ' + memoria[numero]);
                 break;
             }
         case '20':

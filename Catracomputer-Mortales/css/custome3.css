@@ -1,6 +1,7 @@
 .editor {
     border: none;
     height: auto;
+    resize: none;
 }
 
 #instrucciones {
@@ -16,6 +17,10 @@
 }
 
 #instrucciones:focus {
+    outline: none;
+}
+
+.editor:focus {
     outline: none;
 }
 
