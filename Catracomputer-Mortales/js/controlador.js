@@ -105,7 +105,7 @@ $("#btnPaso").click(function() {
 =======
     PC = parseInt($("#infoPC").html());
     alert(PC);
->>>>>>> 6a8e8d2aa99fd807d8d30408874f528240dea3dc
+
     $("#notificaciones").html('');
     texto = $("#instrucciones").val();
     var partes = texto.split("\n");
