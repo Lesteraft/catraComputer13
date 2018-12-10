@@ -48,13 +48,17 @@ $("#btnPlay").click(function() {
         if (validar(memoria[PC], PC)) {
             accion = memoria[PC].substr(1, 2);
             memoriaOP = memoria[PC].substr(3, 4, 5);
+            PC = PC + 1;
             accionEval(accion, memoriaOP);
             $("#infoPC").html(PC);
+
         } else {
             PC = -1;
             break;
         }
     }
+    console.log(memoria);
+
     PC = 0;
 });
 
@@ -112,13 +116,11 @@ function accionEval(accion, numero) {
         case '10':
             {
                 var ingreso;
-                console.log("Lee");
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 ingreso = prompt('Ingresa el número');
                 for (var i = 0; i < ingreso.length; i++) {
                     if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
                         memoria[numero] = ingreso;
-                        PC = PC + 1;
                         $("#infoPC").html(PC);
                         $("#infoAC").html(acumulador);
                     } else {
@@ -131,121 +133,97 @@ function accionEval(accion, numero) {
             }
         case '11':
             {
-                console.log('Escribe');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
-                //aquí tambien a consola ahí se debe imprimir los resultados por ejempli
-                //$("#consolaEntrada").css('display', 'none');
                 $("#consolaSalida").css('display', 'flex');
                 $("#consolaSalidaDiv").html(memoria[numero]);
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '20':
             {
-                console.log('Carga');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 //se pedirá mediante "memoria" al arreglo de objetos para mandarlo al ACUMULADOR
                 acumulador = memoria[numero];
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '21':
             {
-                console.log('Almacena');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 //lo del ac irá al espacio de "memoria" nota: el número de memoria está de parametro
                 memoria[numero] = acumulador;
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '30':
             {
-                console.log('Suma');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 acumulador = parseInt(acumulador) + parseInt(memoria[numero]);
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '31':
             {
-                console.log('Resta');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero} </i></div>`);
                 acumulador = parseInt(acumulador) - parseInt(memoria[numero]);
                 //estas son funciones extras
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '32':
             {
-                console.log('Divide');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 acumulador = parseInt(acumulador) / parseInt(memoria[numero]);
                 //estas son funciones extras
-                PC = PC + 1;
                 break;
             }
         case '33':
             {
-                console.log('Multiplica');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 acumulador = parseInt(acumulador) / parseInt(memoria[numero]);
                 //estas son funciones extras
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '40':
             {
-                console.log('Bifurca');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero} </i></div>`);
-                PC = parseInt(numero);
+                PC = parseInt(numero) - 1;
                 //justo lo que hizo
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '41':
             {
-                console.log('Bifurca si Negativo');
-                if (acumulador < 0) {
-                    PC = parseInt(numero);
+                if (parseInt(acumulador) < 0) {
+                    PC = parseInt(numero) - 1;
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
                 }
                 //justo lo que hizo
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '42':
             {
-                console.log('Bifurca si Cero');
-
-                if (acumulador == 0) {
-                    PC = parseInt(numero);
+                if (parseInt(acumulador) == 0) {
+                    PC = parseInt(numero) - 1;
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero} </i></div>`);
                 }
                 //justo lo que hizo
-                PC = PC + 1;
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
             }
         case '43':
             {
-                console.log('Fin Programa');
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> ¡FIN! </i></div>`);
                 PC = -1;
                 $("#infoPC").html('Fin');
