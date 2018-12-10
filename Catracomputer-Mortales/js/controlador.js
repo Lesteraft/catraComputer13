@@ -47,6 +47,7 @@ $("#instrucciones").keydown(
 );
 
 $("#btnPlay").click(function() {
+    $("#consolaSalidaDiv").html('');
     PC = 0;
     $("#notificaciones").html('');
     texto = $("#instrucciones").val();
@@ -237,7 +238,7 @@ function accionEval(accion, numero) {
             }
         case '40':
             {
-                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero} </i></div>`);
+                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero}</i></div>`);
                 PC = parseInt(numero) - 1;
                 //justo lo que hizo
                 $("#infoPC").html(PC);
@@ -248,7 +249,7 @@ function accionEval(accion, numero) {
             {
                 if (parseInt(acumulador) < 0) {
                     PC = parseInt(numero) - 1;
-                    $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
+                    $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero} </i></div>`);
                 }
                 //justo lo que hizo
                 $("#infoPC").html(PC);
@@ -370,7 +371,7 @@ function accionEval1_AL(accion, numero) {
             }
         case '40':
             {
-                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero} </i></div>`);
+                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true">Instruccion +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero} </i></div>`);
                 PC = parseInt(numero) - 1;
                 //justo lo que hizo
                 $("#infoPC").html(PC);
@@ -381,7 +382,7 @@ function accionEval1_AL(accion, numero) {
             {
                 if (parseInt(acumulador) < 0) {
                     PC = parseInt(numero) - 1;
-                    $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
+                    $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true">Instruccion +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero}</i></div>`);
 
                 }
                 //justo lo que hizo
