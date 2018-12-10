@@ -99,8 +99,11 @@ $("#btnSiguiente").click(function() {
 $("#btnPaso").click(function() {
     console.log('click en paso');
     //
+
+    //alert(PC);
     PC = parseInt($("#infoPC").html());
     alert(PC);
+
     $("#notificaciones").html('');
     texto = $("#instrucciones").val();
     var partes = texto.split("\n");
@@ -413,6 +416,9 @@ function accionEval1_AL(accion, numero) {
         case '41':
             {
                 if (parseInt(acumulador) < 0) {
+                    PC = parseInt(numero) - 1;
+                    var textPaso = $("#divPaso").html();
+                    $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion Negativa");
                     PC = parseInt(numero) - 1;
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero}</i></div>`);
 
