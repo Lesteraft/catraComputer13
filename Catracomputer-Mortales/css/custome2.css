@@ -3,8 +3,10 @@
 }
 
 .parte-baja {
-    min-height: 100px;
+    min-height: 190px;
+    max-height: 200px;
     height: auto;
+    overflow-y: scroll;
 }
 
 .extra-info {

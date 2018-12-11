@@ -6,7 +6,7 @@
 
 #instrucciones {
     padding-left: 10px !important;
-    width: 88%;
+    width: 83%;
     resize: none !important;
 }
 
@@ -35,4 +35,14 @@
     font-size: 35px;
     margin-left: 10px;
     color: rgb(53, 53, 172);
+}
+
+#divPaso {
+    resize: none;
+    min-height: 190px;
+}
+
+#notificaciones {
+    max-height: 350px;
+    overflow-y: scroll;
 }

@@ -61,7 +61,6 @@ $("#btnPlay").click(function() {
         }
     }
     console.log(memoria);
-
     PC = 0;
 });
 
@@ -125,6 +124,16 @@ $(document).ready(function() {
     console.log('LISTOOOOO');
     $("#infoPC").html(PC);
     $("#infoAC").html(acumulador);
+    /*$("#instrucciones").val(`
+    <textarea id="instrucciones" class="editor" rows="60">
+    <div class="sidebar col-1" style="padding-right: 0px;">
+        <div id="lineas" class="sidebar text-center">
+            <div>
+                000
+            </div>
+        </div>
+    </div>
+    `);*/
 });
 
 function validar(parte, numero) {
@@ -155,7 +164,6 @@ function accionEval(accion, numero) {
         case '10':
             {
                 var ingreso = '';
-                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 while (ingreso == '') {
                     ingreso = prompt('Ingresa el número para almacenarlo en: ' + numero);
                     console.log(ingreso);
@@ -174,6 +182,14 @@ function accionEval(accion, numero) {
                         }
                     }
                 }
+                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ numero.toString().padStart(3,'000') }</td>
+                                                    <td> Lectura </td>
+                                                </tr>
+                                            `);
                 break;
             }
         case '11':
@@ -301,7 +317,6 @@ function accionEval1_AL(accion, numero) {
         case '10':
             {
                 var ingreso;
-                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 ingreso = prompt('Ingresa el número');
                 for (var i = 0; i < ingreso.length; i++) {
                     if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
@@ -318,8 +333,8 @@ function accionEval1_AL(accion, numero) {
                     }
                 }
                 var textPaso = $("#divPaso").html();
+                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Lectura");
-
                 break;
             }
         case '11':

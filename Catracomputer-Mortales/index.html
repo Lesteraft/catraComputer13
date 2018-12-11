@@ -88,9 +88,9 @@
                 </nav>
                 <div id="notificaciones"></div>
             </div>
-            <div class="col-12 accordion" id="accordionExample" style="background-color: white;padding: 0px !important ">
-                <div style="border: 1px solid;  ">
+            <div class="col-12 row accordion ml-0" id="accordionExample" style="background-color: white;padding: 0px !important; margin-bottom: 50px; ">
 
+                <div style="border: 1px solid; padding: 0px;" class="col-10" id="" style="">
                     <div class="col-12 collapse" aria-labelledby="headingOne" data-parent="#accordionExample" id="collapseRegistro">
                         <nav class="navbar" style="background-color:#0388A6;">
                             <div class="text-center" style="color: #072359; font-weight: bold; margin: auto;">
@@ -98,7 +98,17 @@
                             </div>
                         </nav>
                         <div class="parte-baja container" id="divRegistros">
-                            hola mundo
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Direccion</th>
+                                        <th scope="col">Instruccion</th>
+                                        <th scope="col">Informacion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrosCuerpo">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -124,25 +134,23 @@
                                 Paso A Paso
                             </div>
                         </nav>
-                        <div class="parte-baja container">
-                            <textarea class="parte-baja container" id="divPaso" disabled>
+                        <div class="parte-baja">
+                            <textarea class=" container" id="divPaso" disabled>
                         		
                         	</textarea>
 
                         </div>
                     </div>
                 </div>
-                <div class="text-center accordion mt-2 ">
-                    <div class="row container">
-                        <div class="">
-                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapseRegistro" aria-expanded="false" aria-controls="collapseRegistro" id="headingOne">Registros</button>
-                        </div>
-                        <div class="">
-                            <button class="btn btn-secondary mr-1" type="button" data-toggle="collapse" data-target="#collapseConsola" aria-expanded="true" aria-controls="collapseConsola" id="headingTwo">Consola</button>
-                        </div>
-                        <div class="">
-                            <button class="btn btn-secondary mr-1 collapsed" type="button" data-toggle="collapse" data-target="#collapsePaso" aria-expanded="false" aria-controls="collapsePaso" id="headingFour">Paso a Paso</button>
-                        </div>
+                <div class="text-center accordion mt-2 col-2">
+                    <div class="">
+
+                        <button class="btn btn-secondary mr-1 btn-block w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseRegistro" aria-expanded="false" aria-controls="collapseRegistro" id="headingOne">Registros</button>
+
+                        <button class="btn btn-secondary mr-1 btn-block w-100" type="button" data-toggle="collapse" data-target="#collapseConsola" aria-expanded="true" aria-controls="collapseConsola" id="headingTwo">Consola</button>
+
+                        <button class="btn btn-secondary mr-1 btn-block w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapsePaso" aria-expanded="false" aria-controls="collapsePaso" id="headingFour">Paso a Paso</button>
+
                     </div>
                 </div>
             </div>
