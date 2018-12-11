@@ -43,19 +43,18 @@ $("#btnPlay").click(function() {
     texto = $("#instrucciones").val();
     var partes = texto.split("\n");
     for (var i = 0; i < partes.length; i++) {
-        memoria[i] = partes[i];
+        memoria[i.toString().padStart(3, '000')] = partes[i];
     }
     var accion;
     var memoriaOp;
     while (PC != -1) {
         console.log(PC);
-        if (validar(partes[PC], PC)) {
-            accion = partes[PC].substr(1, 2);
-            memoriaOP = partes[PC].substr(3, 4, 5);
+        if (validar(memoria[PC.toString().padStart(3, '000')], PC)) {
+            accion = memoria[PC.toString().padStart(3, '000')].substr(1, 2);
+            memoriaOP = memoria[PC.toString().padStart(3, '000')].substr(3, 4, 5);
             PC = PC + 1;
+            $("#infoPC").html(PC.toString().padStart(3, '000'));
             accionEval(accion, parseInt(memoriaOP));
-            $("#infoPC").html(PC);
-
         } else {
             PC = -1;
             break;
@@ -87,9 +86,10 @@ $("#btnPaso").click(function() {
     var memoriaOp;
 
     if (comenzar) {
+        PC = 0;
         comenzar = false;
         console.log('click en paso');
-        PC = parseInt($("#infoPC").html());
+        //PC = parseInt($("#infoPC").val());
 
         $("#notificaciones").html('');
         texto = $("#instrucciones").val();
@@ -154,20 +154,24 @@ function accionEval(accion, numero) {
     switch (accion) {
         case '10':
             {
-                var ingreso;
+                var ingreso = '';
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                ingreso = prompt('Ingresa el número');
-                for (var i = 0; i < ingreso.length; i++) {
-                    if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
-                        memoria[numero] = ingreso.toString().padStart(6, "+00000");
-                        $("#infoPC").html(PC);
-                        $("#infoAC").html(acumulador);
+                while (ingreso == '') {
+                    ingreso = prompt('Ingresa el número para almacenarlo en: ' + numero);
+                    console.log(ingreso);
+
+                    for (var i = 0; i < ingreso.length; i++) {
+                        if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
+                            memoria[numero.toString().padStart(3, '000')] = ingreso.toString().padStart(6, "+00000");
+                            $("#infoPC").html(PC);
+                            $("#infoAC").html(acumulador);
 
 
-                    } else {
-                        PC = -1;
-                        $("#notificaciones").append(` <div class="card" style="color: red; font-size: 20px;"> <i class="fa fa-exclamation-circle" aria-hidden="true">ERROR, SE INGRESÓ CARACTER INVÁLIDO +${accion + numero.toString().padStart(3, '0')}</i> </div>`);
-                        break;
+                        } else {
+                            PC = -1;
+                            $("#notificaciones").append(` <div class="card" style="color: red; font-size: 20px;"> <i class="fa fa-exclamation-circle" aria-hidden="true">ERROR, SE INGRESÓ CARACTER INVÁLIDO +${accion + numero.toString().padStart(3, '0')}</i> </div>`);
+                            break;
+                        }
                     }
                 }
                 break;
@@ -175,8 +179,7 @@ function accionEval(accion, numero) {
         case '11':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                $("#consolaSalida").css('display', 'flex');
-                $("#consolaSalidaDiv").html(parseInt(memoria[numero]));
+                $("#consolaSalidaDiv").html(parseInt(memoria[numero.toString().padStart(3, '000')]));
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
@@ -185,7 +188,7 @@ function accionEval(accion, numero) {
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 //se pedirá mediante "memoria" al arreglo de objetos para mandarlo al ACUMULADOR
-                acumulador = memoria[numero];
+                acumulador = memoria[numero.toString().padStart(3, '000')];
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
                 break;
@@ -194,15 +197,22 @@ function accionEval(accion, numero) {
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 //lo del ac irá al espacio de "memoria" nota: el número de memoria está de parametro
-                memoria[numero] = acumulador.toString().padStart(6, "+00000");
-                $("#infoPC").html(PC);
-                $("#infoAC").html(acumulador);
+                if (parseInt(acumulador) < 0) {
+                    acumulador = (parseInt(acumulador) * -1);
+                    memoria[numero.toString().padStart(3, '000')] = acumulador.toString().padStart(6, '+000000');
+                    $("#infoPC").html(PC);
+                    $("#infoAC").html(acumulador);
+                } else {
+                    memoria[numero.toString().padStart(3, '000')] = acumulador.toString().padStart(6, '+000000');
+                    $("#infoPC").html(PC);
+                    $("#infoAC").html(acumulador);
+                }
                 break;
             }
         case '30':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                acumulador = parseInt(acumulador) + parseInt(memoria[numero]);
+                acumulador = parseInt(acumulador) + parseInt(memoria[numero.toString().padStart(3, '000')]);
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
 
@@ -211,7 +221,7 @@ function accionEval(accion, numero) {
         case '31':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')} </i></div>`);
-                acumulador = parseInt(acumulador) - parseInt(memoria[numero]);
+                acumulador = parseInt(acumulador) - parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
@@ -220,14 +230,14 @@ function accionEval(accion, numero) {
         case '32':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                acumulador = parseInt(acumulador) / parseInt(memoria[numero]);
+                acumulador = parseInt(acumulador) / parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
                 break;
             }
         case '33':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                acumulador = parseInt(acumulador) / parseInt(memoria[numero]);
+                acumulador = parseInt(acumulador) / parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
