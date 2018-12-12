@@ -4,8 +4,9 @@ var count;
 var lines;
 var PC = 0;
 var acumulador = 0;
-var comenzar = true;
 var partes;
+var accion;
+var memoriaOp;
 
 function modificarDiv(numero) {
     $('#lineas').html(' ');
@@ -16,45 +17,43 @@ function modificarDiv(numero) {
     }
 }
 
-$("#instrucciones").keydown(
-    function(e) {
-        if (e.which == 8) {
-            setTimeout(() => {
-                this.text = $('#instrucciones').val();
-                this.lines = this.text.split('\n');
-                this.count = this.lines.length;
-                modificarDiv(this.count);
-            }, 10);
-        } else {
-            setTimeout(() => {
-                this.text = $('#instrucciones').val();
-                this.lines = this.text.split('\n');
-                this.count = this.lines.length;
-                modificarDiv(this.count);
-            }, 10);
-        }
+$("#instrucciones").keydown(function(e) {
+    if (e.which == 8) {
+        setTimeout(() => {
+            this.text = $('#instrucciones').val();
+            this.lines = this.text.split('\n');
+            this.count = this.lines.length;
+            modificarDiv(this.count);
+        }, 10);
+    } else {
+        setTimeout(() => {
+            this.text = $('#instrucciones').val();
+            this.lines = this.text.split('\n');
+            this.count = this.lines.length;
+            modificarDiv(this.count);
+        }, 10);
     }
-);
+});
 
 $("#btnPlay").click(function() {
     $("#consolaSalidaDiv").html('');
     PC = 0;
     $("#notificaciones").html('');
     texto = $("#instrucciones").val();
-    var partes = texto.split("\n");
-    for (var i = 0; i < partes.length; i++) {
-        memoria[i.toString().padStart(3, '000')] = partes[i];
+    var partesP = texto.split("\n");
+    for (var i = 0; i < partesP.length; i++) {
+        memoria[i.toString().padStart(3, '000')] = partesP[i];
     }
-    var accion;
-    var memoriaOp;
+    var accionP;
+    var memoriaOpP;
     while (PC != -1) {
         console.log(PC);
         if (validar(memoria[PC.toString().padStart(3, '000')], PC)) {
-            accion = memoria[PC.toString().padStart(3, '000')].substr(1, 2);
-            memoriaOP = memoria[PC.toString().padStart(3, '000')].substr(3, 4, 5);
+            accionP = memoria[PC.toString().padStart(3, '000')].substr(1, 2);
+            memoriaOpP = memoria[PC.toString().padStart(3, '000')].substr(3, 4, 5);
             PC = PC + 1;
             $("#infoPC").html(PC.toString().padStart(3, '000'));
-            accionEval(accion, parseInt(memoriaOP));
+            accionEval(accionP, parseInt(memoriaOpP));
         } else {
             PC = -1;
             break;
@@ -76,64 +75,45 @@ $("#btnStop").click(function() {
 
 $("#btnSiguiente").click(function() {
     console.log('click en siguiente');
+    console.log('2');
+    if (validar(memoria[PC], PC)) {
+        accion = memoria[PC].substr(1, 2);
+        memoriaOP = memoria[PC].substr(3, 4, 5);
+        PC = PC + 1;
+        accionEval1_AL(accion, parseInt(memoriaOP));
+    } else {
+        PC = -1;
+    }
+    console.log(memoria);
 
 });
 
-
 $("#btnPaso").click(function() {
-    var accion;
-    var memoriaOp;
+    PC = 0;
+    console.log('click en paso');
 
-    if (comenzar) {
-        PC = 0;
-        comenzar = false;
-        console.log('click en paso');
-        //PC = parseInt($("#infoPC").val());
-
-        $("#notificaciones").html('');
-        texto = $("#instrucciones").val();
-        partes = texto.split("\n");
-        for (var i = 0; i < partes.length; i++) {
-            memoria[i] = partes[i];
-        }
-
-        if (validar(memoria[PC], PC)) {
-            accion = memoria[PC].substr(1, 2);
-            memoriaOP = memoria[PC].substr(3, 4, 5);
-            PC = PC + 1;
-            accionEval1_AL(accion, parseInt(memoriaOP));
-        } else {
-            PC = -1;
-        }
-        console.log(memoria);
-    } else {
-        console.log('2');
-        if (validar(memoria[PC], PC)) {
-            accion = memoria[PC].substr(1, 2);
-            memoriaOP = memoria[PC].substr(3, 4, 5);
-            PC = PC + 1;
-            accionEval1_AL(accion, parseInt(memoriaOP));
-        } else {
-            PC = -1;
-        }
-        console.log(memoria);
+    $("#notificaciones").html('');
+    texto = $("#instrucciones").val();
+    partes = texto.split("\n");
+    for (var i = 0; i < partes.length; i++) {
+        memoria[i] = partes[i];
     }
+
+    if (validar(memoria[PC], PC)) {
+        accion = memoria[PC].substr(1, 2);
+        memoriaOP = memoria[PC].substr(3, 4, 5);
+        PC = PC + 1;
+        accionEval1_AL(accion, parseInt(memoriaOP));
+    } else {
+        PC = -1;
+    }
+    console.log(memoria);
 });
 
 $(document).ready(function() {
     console.log('LISTOOOOO');
     $("#infoPC").html(PC);
     $("#infoAC").html(acumulador);
-    /*$("#instrucciones").val(`
-    <textarea id="instrucciones" class="editor" rows="60">
-    <div class="sidebar col-1" style="padding-right: 0px;">
-        <div id="lineas" class="sidebar text-center">
-            <div>
-                000
-            </div>
-        </div>
-    </div>
-    `);*/
 });
 
 function validar(parte, numero) {
@@ -190,6 +170,8 @@ function accionEval(accion, numero) {
                                                     <td> Lectura </td>
                                                 </tr>
                                             `);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Lectura");
                 break;
             }
         case '11':
@@ -198,6 +180,8 @@ function accionEval(accion, numero) {
                 $("#consolaSalidaDiv").html(parseInt(memoria[numero.toString().padStart(3, '000')]));
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Escritura");
                 break;
             }
         case '20':
@@ -207,6 +191,8 @@ function accionEval(accion, numero) {
                 acumulador = memoria[numero.toString().padStart(3, '000')];
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: carga en el acumulador");
                 break;
             }
         case '21':
@@ -223,6 +209,8 @@ function accionEval(accion, numero) {
                     $("#infoPC").html(PC);
                     $("#infoAC").html(acumulador);
                 }
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: almacenamiento");
                 break;
             }
         case '30':
@@ -231,7 +219,8 @@ function accionEval(accion, numero) {
                 acumulador = parseInt(acumulador) + parseInt(memoria[numero.toString().padStart(3, '000')]);
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
-
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Suma");
                 break;
             }
         case '31':
@@ -241,6 +230,8 @@ function accionEval(accion, numero) {
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + "  * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: resta");
                 break;
             }
         case '32':
@@ -248,15 +239,19 @@ function accionEval(accion, numero) {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 acumulador = parseInt(acumulador) / parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Division");
                 break;
             }
         case '33':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                acumulador = parseInt(acumulador) / parseInt(memoria[numero.toString().padStart(3, '000')]);
+                acumulador = parseInt(acumulador) * parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Multiplicacion");
                 break;
             }
         case '40':
@@ -266,6 +261,8 @@ function accionEval(accion, numero) {
                 //justo lo que hizo
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion simple");
                 break;
             }
         case '41':
@@ -273,6 +270,8 @@ function accionEval(accion, numero) {
                 if (parseInt(acumulador) < 0) {
                     PC = (numero);
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero} </i></div>`);
+                    var textPaso = $("#divPaso").html();
+                    $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion Negativa");
                 }
                 //justo lo que hizo
                 $("#infoPC").html(PC);
@@ -284,6 +283,8 @@ function accionEval(accion, numero) {
                 if (parseInt(acumulador) == 0) {
                     PC = (numero);
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> Instruccion  +${accion} <i class="fa fa-arrow-right" aria-hidden="true"></i> SALTÓ,  A <i class="fa fa-arrow-right" aria-hidden="true"></i> ${numero} </i></div>`);
+                    var textPaso = $("#divPaso").html();
+                    $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion cero");
                 }
                 //justo lo que hizo
                 $("#infoPC").html(PC);
@@ -296,6 +297,8 @@ function accionEval(accion, numero) {
                 PC = -1;
                 $("#infoPC").html('Fin');
                 $("#infoAC").html(acumulador);
+                var textPaso = $("#divPaso").html();
+                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: fin programa");
                 break;
             }
         default:
@@ -311,7 +314,7 @@ function accionEval(accion, numero) {
 }
 
 
-//funcion para hacer pruebas
+//funcion para Paso a Paso
 function accionEval1_AL(accion, numero) {
     switch (accion) {
         case '10':
@@ -332,6 +335,13 @@ function accionEval1_AL(accion, numero) {
                         break;
                     }
                 }
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ numero.toString().padStart(3,'000') }</td>
+                                                    <td> Lectura </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Lectura");
@@ -390,7 +400,7 @@ function accionEval1_AL(accion, numero) {
         case '31':
             {
                 $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')} </i></div>`);
-                acumulador = parseInt(acumulador) - parseInt(memoria[numero]);
+                acumulador = parseInt(memoria[numero]) - parseInt(acumulador);
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
@@ -437,9 +447,6 @@ function accionEval1_AL(accion, numero) {
             {
                 if (parseInt(acumulador) < 0) {
                     PC = parseInt(numero);
-                    //var textPaso = $("#divPaso").html();
-                    $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion Negativa");
-                    //PC = parseInt(numero);
                     $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
 
                     var textPaso = $("#divPaso").html();
