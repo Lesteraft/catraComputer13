@@ -35,9 +35,9 @@
                 <i class=" controles fa fa-stop" aria-hidden="true"></i>
             </div>
             <div style="height: 35px;" id="btnPaso" data-toggle="tooltip" title="Paso a Paso">
-                <i class="controles fa fa-shoe-prints    "></i>
+                <i class="controles fa fa-shoe-prints"></i>
             </div>
-            <div style="height: 35px;" id="btnSiguiente" data-toggle="tooltip" title="Siguiente">
+            <div style="height: 35px; display: none;" id="btnSiguiente" data-toggle="tooltip" title="Siguiente">
                 <i class=" controles fa fa-step-forward" aria-hidden="true"></i>
             </div>
 
