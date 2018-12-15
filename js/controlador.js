@@ -140,8 +140,17 @@ function accionEval(accion, numero) {
                             memoria[numero.toString().padStart(3, '000')] = ingreso.toString().padStart(6, "+00000");
                             $("#infoPC").html(PC);
                             $("#infoAC").html(acumulador);
-
-
+                            $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
+                            $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Lectura </td>
+                                                </tr>
+                                            `);
+                            var textPaso = $("#divPaso").html();
+                            $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Lectura");
+                            break;
                         } else {
                             PC = -1;
                             $("#notificaciones").append(` <div class="card" style="color: red; font-size: 20px;"> <i class="fa fa-exclamation-circle" aria-hidden="true">ERROR, SE INGRESÓ CARACTER INVÁLIDO +${accion + numero.toString().padStart(3, '0')}</i> </div>`);
@@ -149,17 +158,7 @@ function accionEval(accion, numero) {
                         }
                     }
                 }
-                $("#notificaciones").append(`<div class="card" style="color: green; font-size: 20px;"> <i class="fa fa-check-circle" aria-hidden="true"> +${accion + numero.toString().padStart(3, '0')}</i></div>`);
-                $("#registrosCuerpo").append(`
-                                                <tr>
-                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
-                                                    <td>${ accion.toString().padStart(2,'00') }</td>
-                                                    <td> Lectura </td>
-                                                </tr>
-                                            `);
-                var textPaso = $("#divPaso").html();
-                $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Lectura");
-                break;
+
             }
         case '11':
             {
