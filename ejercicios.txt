@@ -1,0 +1,21 @@
+El siguiente programa perdirá 3 números al usuario, los sumará y otendremos el promedio de los 7 números.
+
+
++10030
++20030
++30014
++21014
++20015
++31016
++42009
++21015
++40000
++20014
++32017
++21018
++11018
++43000
++00000
++00007
++00001
++00007
