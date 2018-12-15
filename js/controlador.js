@@ -47,7 +47,6 @@ $("#btnPlay").click(function() {
     var accionP;
     var memoriaOpP;
     while (PC != -1) {
-        console.log(PC);
         if (validar(memoria[PC.toString().padStart(3, '000')], PC)) {
             accionP = memoria[PC.toString().padStart(3, '000')].substr(1, 2);
             memoriaOpP = memoria[PC.toString().padStart(3, '000')].substr(3, 4, 5);
@@ -59,12 +58,10 @@ $("#btnPlay").click(function() {
             break;
         }
     }
-    console.log(memoria);
     PC = 0;
 });
 
 $("#btnStop").click(function() {
-    console.log('click en stop');
     //
     $("#infoPC").html("0");
     $("#infoAC").html("0");
@@ -74,8 +71,6 @@ $("#btnStop").click(function() {
 
 
 $("#btnSiguiente").click(function() {
-    console.log('click en siguiente');
-    console.log('2');
     if (validar(memoria[PC], PC)) {
         accion = memoria[PC].substr(1, 2);
         memoriaOP = memoria[PC].substr(3, 4, 5);
@@ -84,14 +79,10 @@ $("#btnSiguiente").click(function() {
     } else {
         PC = -1;
     }
-    console.log(memoria);
-
 });
 
 $("#btnPaso").click(function() {
     PC = 0;
-    console.log('click en paso');
-
     $("#notificaciones").html('');
     texto = $("#instrucciones").val();
     partes = texto.split("\n");
@@ -107,11 +98,9 @@ $("#btnPaso").click(function() {
     } else {
         PC = -1;
     }
-    console.log(memoria);
 });
 
 $(document).ready(function() {
-    console.log('LISTOOOOO');
     $("#infoPC").html(PC);
     $("#infoAC").html(acumulador);
 });
@@ -146,8 +135,6 @@ function accionEval(accion, numero) {
                 var ingreso = '';
                 while (ingreso == '') {
                     ingreso = prompt('Ingresa el número para almacenarlo en: ' + numero);
-                    console.log(ingreso);
-
                     for (var i = 0; i < ingreso.length; i++) {
                         if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
                             memoria[numero.toString().padStart(3, '000')] = ingreso.toString().padStart(6, "+00000");
@@ -401,8 +388,6 @@ function accionEval1_AL(accion, numero) {
                 for (var i = 0; i < ingreso.length; i++) {
                     if (ingreso.charCodeAt(i) >= 48 && ingreso.charCodeAt(i) <= 57) {
                         memoria[numero] = ingreso;
-                        console.log(memoria[numero]);
-
                         $("#infoPC").html(PC);
                         $("#infoAC").html(acumulador);
 
