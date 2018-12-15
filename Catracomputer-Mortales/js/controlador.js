@@ -166,7 +166,7 @@ function accionEval(accion, numero) {
                 $("#registrosCuerpo").append(`
                                                 <tr>
                                                     <th scope="row">${ numero.toString().padStart(3,'000') }</th>
-                                                    <td>${ numero.toString().padStart(3,'000') }</td>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
                                                     <td> Lectura </td>
                                                 </tr>
                                             `);
@@ -180,6 +180,13 @@ function accionEval(accion, numero) {
                 $("#consolaSalidaDiv").html(parseInt(memoria[numero.toString().padStart(3, '000')]));
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Escritura </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Escritura");
                 break;
@@ -191,6 +198,13 @@ function accionEval(accion, numero) {
                 acumulador = memoria[numero.toString().padStart(3, '000')];
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> carga </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: carga en el acumulador");
                 break;
@@ -209,6 +223,13 @@ function accionEval(accion, numero) {
                     $("#infoPC").html(PC);
                     $("#infoAC").html(acumulador);
                 }
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Almacenamiento </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: almacenamiento");
                 break;
@@ -219,6 +240,13 @@ function accionEval(accion, numero) {
                 acumulador = parseInt(acumulador) + parseInt(memoria[numero.toString().padStart(3, '000')]);
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Suma </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Suma");
                 break;
@@ -230,6 +258,13 @@ function accionEval(accion, numero) {
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Resta </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + "  * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: resta");
                 break;
@@ -240,6 +275,13 @@ function accionEval(accion, numero) {
                 acumulador = parseInt(acumulador) / parseInt(memoria[numero.toString().padStart(3, '000')]);
                 //estas son funciones extras
                 var textPaso = $("#divPaso").html();
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Divide </td>
+                                                </tr>
+                                            `);
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Division");
                 break;
             }
@@ -250,6 +292,13 @@ function accionEval(accion, numero) {
                 //estas son funciones extras
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Multiplica </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: Multiplicacion");
                 break;
@@ -261,6 +310,13 @@ function accionEval(accion, numero) {
                 //justo lo que hizo
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Bifurca </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: bifurcacion simple");
                 break;
@@ -276,6 +332,13 @@ function accionEval(accion, numero) {
                 //justo lo que hizo
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Bifurca Negativo </td>
+                                                </tr>
+                                            `);
                 break;
             }
         case '42':
@@ -289,6 +352,13 @@ function accionEval(accion, numero) {
                 //justo lo que hizo
                 $("#infoPC").html(PC);
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Bifurca Cero </td>
+                                                </tr>
+                                            `);
                 break;
             }
         case '43':
@@ -297,6 +367,13 @@ function accionEval(accion, numero) {
                 PC = -1;
                 $("#infoPC").html('Fin');
                 $("#infoAC").html(acumulador);
+                $("#registrosCuerpo").append(`
+                                                <tr>
+                                                    <th scope="row">${ numero.toString().padStart(3,'000') }</th>
+                                                    <td>${ accion.toString().padStart(2,'00') }</td>
+                                                    <td> Fin Programa </td>
+                                                </tr>
+                                            `);
                 var textPaso = $("#divPaso").html();
                 $("#divPaso").html(textPaso + "\n" + " * Operacion: " + accion + "  ubicacion memoria: " + numero + "  Descripcion: fin programa");
                 break;
